@@ -1,0 +1,75 @@
+# EcoCycle Configuration Example
+# Copy this file to config.yml and update with your settings
+
+app:
+  name: EcoCycle
+  env: development
+  port: 3000
+  
+server:
+  host: 0.0.0.0
+  port: 3000
+  timeout: 30
+
+database:
+  type: postgresql
+  host: localhost
+  port: 5432
+  name: ecocycle_db
+  user: ecocycle_user
+  password: change_me_in_env
+  pool_size: 10
+
+cache:
+  type: redis
+  host: localhost
+  port: 6379
+  ttl: 3600
+
+authentication:
+  jwt_secret: your_secret_key_here
+  jwt_expiry: 86400
+  refresh_token_expiry: 604800
+
+apikeys:
+  - name: default
+    key: your_api_key_here
+    secret: your_api_secret_here
+
+services:
+  email:
+    enabled: true
+    provider: smtp
+    host: smtp.example.com
+    port: 587
+    user: your_email@example.com
+    password: your_password
+  
+  sms:
+    enabled: true
+    provider: twilio
+    account_sid: your_account_sid
+    auth_token: your_auth_token
+  
+  maps:
+    provider: google_maps
+    api_key: your_api_key
+  
+  payment:
+    provider: stripe
+    api_key: your_stripe_key
+    webhook_secret: your_webhook_secret
+
+logging:
+  level: info
+  format: json
+  output: console,file
+  file: logs/app.log
+
+security:
+  enable_cors: true
+  allowed_origins:
+    - http://localhost:3001
+    - http://localhost:3002
+  enable_rate_limiting: true
+  rate_limit: 100
